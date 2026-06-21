@@ -1,20 +1,12 @@
+import Link from "next/link";
+import Navbar from "@/app/components/Navbar";
+import Footer from "@/app/components/Footer";
+
 export default function Home() {
   return (
     <main className="container">
       {/* NAVBAR */}
-      <nav className="navbar">
-        <div className="logo">CredoSec</div>
-
-        <div className="nav-links">
-          <a href="#">Home</a>
-          <a href="#">Services</a>
-          <a href="#">Solutions</a>
-          <a href="#">About</a>
-          <a href="#">Contact</a>
-        </div>
-
-        <button className="cta">Get Audit</button>
-      </nav>
+      <Navbar />
 
       {/* HERO SECTION */}
       <section className="hero">
@@ -79,6 +71,7 @@ export default function Home() {
           </div>
         </div>
       </section>
+      <Footer />
     </main>
   );
 }
