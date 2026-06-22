@@ -9,9 +9,13 @@ export default function AboutPage() {
       <section className="about-hero">
         <h1>About CredoSec</h1>
         <p>
-          CredoSec is a cybersecurity company dedicated to helping organizations
+          CredoSec is a cybersecurity company founded by Joseph Okeke in 2020,
+          dedicated to helping organizations, governments, and individuals
           protect their digital assets through proactive security assessments,
           penetration testing, cloud security, and incident response services.
+          CredoSec also empowers African youths through cybersecurity and IT
+          skills training, building the next generation of security
+          professionals.
         </p>
       </section>
 
