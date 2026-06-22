@@ -88,10 +88,25 @@ export default function AboutPage() {
             LinkedIn
           </a>
 
-          <a href="#">X (Twitter)</a>
-          <a href="#">Instagram</a>
-          <a href="#">Facebook</a>
-          <a href="#">WhatsApp</a>
+          <a href="https://x.com" target="_blank" rel="noopener noreferrer">
+            X (Twitter)
+          </a>
+
+          <a
+            href="https://instagram.com"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Instagram
+          </a>
+
+          <a
+            href="https://facebook.com"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Facebook
+          </a>
         </div>
       </section>
       <Footer />
