@@ -7,7 +7,7 @@ export default function Navbar() {
   const [open, setOpen] = useState(false);
 
   return (
-    <nav className="flex items-center justify-between px-6 md:px-20 py-5 border-b border-[#1b2840] relative">
+    <nav className="w-full flex items-center justify-between px-6 md:px-20 py-5 border-b border-[#1b2840] relative">
       {/* LOGO */}
       <div className="text-green-400 font-bold text-xl">CredoSec</div>
 

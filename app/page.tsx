@@ -9,9 +9,9 @@ export default function Home() {
       <Navbar />
 
       {/* HERO SECTION */}
-      <section className="flex flex-col md:flex-row items-center justify-between px-6 md:px-20 py-16">
+      <section className="flex flex-col md:flex-row items-center justify-between px-6 md:px-20 py-16 text-center md:text-left">
         {/* TEXT */}
-        <div className="w-full md:w-1/2">
+        <div className="w-full md:w-1/2 text-center md:text-left">
           <p className="text-green-400 text-xs tracking-widest mb-3">
             CYBERSECURITY YOU CAN TRUST
           </p>
@@ -40,7 +40,7 @@ export default function Home() {
           </div>
 
           {/* STATS */}
-          <div className="flex flex-wrap gap-4 mt-8 text-sm text-gray-300">
+          <div className="flex flex-wrap justify-center md:justify-start gap-4 mt-8 text-sm text-gray-300">
             <div className="bg-[#0c111b] px-3 py-2 rounded-md border border-[#1c2333]">
               🔒 24/7 Monitoring
             </div>
