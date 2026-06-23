@@ -1,10 +1,10 @@
 import Footer from "../components/Footer";
-import Navbar from "../components/Navbar";
+import DashboardNav from "../components/DashboardNav";
 
 export default function DashboardPage() {
   return (
     <section>
-      <Navbar />
+      <DashboardNav />
       <main className="min-h-screen bg-black text-white p-6 md:p-10">
         {/* Header */}
         <div className="flex flex-col md:flex-row md:items-center md:justify-between">
