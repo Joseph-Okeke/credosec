@@ -28,6 +28,9 @@ export default function Navbar() {
         <Link href="/contact" className="hover:text-green-400 transition">
           Contact
         </Link>
+        <Link href="/training" className="hover:text-green-400 transition">
+          Training
+        </Link>
       </div>
 
       {/* CTA (DESKTOP) */}
