@@ -9,13 +9,13 @@ import Footer from "../components/Footer";
 
 export default function SignupPage() {
   const router = useRouter();
-
   const [loading, setLoading] = useState(false);
 
   const [fullName, setFullName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [phone, setPhone] = useState("");
+  const [role, setRole] = useState("student"); // ✅ NEW
 
   async function handleSignup(e: React.FormEvent) {
     e.preventDefault();
@@ -27,7 +27,8 @@ export default function SignupPage() {
       options: {
         data: {
           full_name: fullName,
-          phone: phone, // ✅ stored in Supabase Auth metadata
+          phone: phone,
+          role: role, // ✅ stored in auth metadata too
         },
       },
     });
@@ -37,17 +38,32 @@ export default function SignupPage() {
       setLoading(false);
       return;
     }
-
-    // OPTIONAL (BEST PRACTICE): also store in profiles table
+    /*
     if (data.user) {
       await supabase.from("profiles").insert([
         {
           id: data.user.id,
           full_name: fullName,
           phone: phone,
-          role: "student",
+          role: role, // ✅ ROLE ADDED HERE
         },
       ]);
+    }
+*/
+    if (data.user) {
+      const { error } = await supabase.from("profiles").insert([
+        {
+          id: data.user.id,
+          full_name: fullName,
+          phone: phone,
+          role: role,
+        },
+      ]);
+
+      if (error) {
+        console.error("Profile insert error:", error.message);
+        alert("Account created but profile setup failed. Contact support.");
+      }
     }
 
     alert("Account created! Check your email.");
@@ -59,6 +75,7 @@ export default function SignupPage() {
   return (
     <section>
       <Navbar />
+
       <main className="min-h-screen flex items-center justify-center bg-black px-4">
         <div className="w-full max-w-md bg-gray-900 border border-gray-800 rounded-xl p-8">
           <h1 className="text-3xl font-bold text-white text-center">
@@ -97,6 +114,17 @@ export default function SignupPage() {
               required
             />
 
+            {/* ✅ ROLE SELECT */}
+            <select
+              value={role}
+              onChange={(e) => setRole(e.target.value)}
+              className="w-full p-3 bg-black border border-gray-700 rounded text-white"
+            >
+              <option value="student">Student</option>
+              <option value="tutor">Tutor</option>
+              <option value="admin">Admin</option>
+            </select>
+
             <input
               type="password"
               placeholder="Password"
@@ -122,6 +150,7 @@ export default function SignupPage() {
           </p>
         </div>
       </main>
+
       <Footer />
     </section>
   );
