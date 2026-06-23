@@ -8,7 +8,7 @@ export default function DashboardLayout({
   return (
     <div className="min-h-screen bg-black text-white flex">
       <aside className="w-64 bg-gray-900 p-6">
-        <h2 className="text-2xl font-bold mb-8">CredoSec LMS</h2>
+        <h2 className="text-2xl font-bold mb-8 text-green-500">Credosec</h2>
 
         <nav className="space-y-4">
           <Link href="/dashboard">Overview</Link>
