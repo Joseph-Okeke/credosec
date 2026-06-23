@@ -31,6 +31,12 @@ export default function Navbar() {
         <Link href="/training" className="hover:text-green-400 transition">
           Training
         </Link>
+        <Link href="/login" className="hover:text-green-400 transition">
+          Login
+        </Link>
+        <Link href="/signup" className="hover:text-green-400 transition">
+          Register
+        </Link>
       </div>
 
       {/* CTA (DESKTOP) */}
