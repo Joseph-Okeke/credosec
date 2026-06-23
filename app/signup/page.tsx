@@ -121,8 +121,6 @@ export default function SignupPage() {
               className="w-full p-3 bg-black border border-gray-700 rounded text-white"
             >
               <option value="student">Student</option>
-              <option value="tutor">Tutor</option>
-              <option value="admin">Admin</option>
             </select>
 
             <input
