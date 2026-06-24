@@ -32,7 +32,7 @@ export default function DashboardTopBar() {
       <div className="relative">
         <button
           onClick={() => setOpen(!open)}
-          className="text-gray-300 hover:text-green-400 transition absolute right-0 mt-2"
+          className="text-gray-300 hover:text-green-400 transition"
         >
           👤 My Profile
         </button>
