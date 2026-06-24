@@ -14,7 +14,7 @@ export default function DashboardTopBar() {
   }
 
   return (
-    <div className="w-full flex items-center justify-end gap-6 py-4 px-6 bg-gray-900 border-b border-gray-800">
+    <div className="w-full flex items-center justify-end gap-6 py-4 px-6 bg-gray-900 border-b border-gray-800 z-50">
       {/* Notifications */}
       <button className="text-gray-300 hover:text-green-400 transition">
         🔔 Notifications
@@ -32,7 +32,7 @@ export default function DashboardTopBar() {
       <div className="relative">
         <button
           onClick={() => setOpen(!open)}
-          className="text-gray-300 hover:text-green-400 transition"
+          className="text-gray-300 hover:text-green-400 transition absolute right-0 mt-2 z-9999" /*className=" bg-gray-900"*/
         >
           👤 My Profile
         </button>
