@@ -64,7 +64,9 @@ export default function DashboardNav() {
         <div>
           <p className="text-xl md:text-2xl font-bold text-white">
             Welcome back,
-            <span className="text-green-400 ml-2">{userName}</span>
+            <span className="ml-2 text-lg md:text-xl text-green-400">
+              {userName}
+            </span>
           </p>
 
           <p className="text-sm text-gray-400 mt-1">
