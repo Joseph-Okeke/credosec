@@ -2,15 +2,28 @@
 
 import { useState } from "react";
 import { useRouter } from "next/navigation";
+import { supabase } from "@/app/lib/supabase";
 
-export default function DashboardTopBar() {
+export default function DashboardNav() {
   const router = useRouter();
   const [open, setOpen] = useState(false);
 
-  function handleLogout() {
-    // later we will connect Supabase auth logout here
-    localStorage.removeItem("supabase.auth.token");
-    router.push("/login");
+  async function handleLogout() {
+    try {
+      const { error } = await supabase.auth.signOut();
+
+      if (error) {
+        console.error("Logout failed:", error);
+        alert("Unable to log out. Please try again.");
+        return;
+      }
+
+      router.replace("/login");
+      router.refresh();
+    } catch (err) {
+      console.error("Logout error:", err);
+      alert("Something went wrong while logging out.");
+    }
   }
 
   return (
@@ -40,7 +53,10 @@ export default function DashboardTopBar() {
         {open && (
           <div className="absolute right-0 mt-2 w-40 bg-black border border-gray-800 rounded-lg shadow-lg">
             <button
-              onClick={() => router.push("/dashboard/profile")}
+              onClick={() => {
+                setOpen(false);
+                router.push("/dashboard/profile");
+              }}
               className="block w-full text-left px-4 py-2 hover:bg-gray-800"
             >
               View Profile
