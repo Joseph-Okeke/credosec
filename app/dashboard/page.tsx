@@ -142,8 +142,6 @@ export default function DashboardPage() {
 */
   return (
     <section className="min-h-screen bg-black text-white pt-16 md:pt-24">
-      <DashboardNav />
-
       <div className="p-4 md:p-4">
         <h1 className="text-3xl font-bold">Welcome Back 👋</h1>
 
