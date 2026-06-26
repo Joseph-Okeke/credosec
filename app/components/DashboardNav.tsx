@@ -58,7 +58,7 @@ export default function DashboardNav() {
     .toUpperCase();
 
   return (
-    <header className="sticky top-0 z-30 bg-[#0D1117]/95 backdrop-blur border-b border-gray-800">
+    <header className="h-16 border-b border-gray-800 bg-[#0D1117] px-4 lg:px-8 flex items-center justify-between">
       <div className="flex items-center justify-between px-6 py-4">
         {/* LEFT */}
 
@@ -81,7 +81,7 @@ export default function DashboardNav() {
           <div className="hidden md:block">
             <input
               placeholder="Search courses..."
-              className="w-72 bg-[#05070D] border border-gray-700 rounded-lg px-4 py-2 focus:outline-none focus:border-green-500"
+              className="w-72 h-11 bg-[#05070D] border border-gray-700 rounded-lg px-4 py-2 focus:outline-none focus:border-green-500"
             />
           </div>
 
@@ -114,28 +114,28 @@ export default function DashboardNav() {
               <div className="absolute right-0 mt-3 w-56 rounded-xl bg-[#0D1117] border border-gray-800 shadow-xl overflow-hidden">
                 <button
                   onClick={() => router.push("/dashboard/profile")}
-                  className="w-full text-left px-5 py-3 hover:bg-gray-800"
+                  className="w-full text-left px-4 py-2 hover:bg-gray-800"
                 >
                   👤 My Profile
                 </button>
 
                 <button
                   onClick={() => router.push("/dashboard/settings")}
-                  className="w-full text-left px-5 py-3 hover:bg-gray-800"
+                  className="w-full text-left px-4 py-2 hover:bg-gray-800"
                 >
                   ⚙️ Settings
                 </button>
 
                 <button
                   onClick={() => router.push("/dashboard/payments")}
-                  className="w-full text-left px-5 py-3 hover:bg-gray-800"
+                  className="w-full text-left px-4 py-2 hover:bg-gray-800"
                 >
                   💳 Payments
                 </button>
 
                 <button
                   onClick={() => router.push("/dashboard/certificates")}
-                  className="w-full text-left px-5 py-3 hover:bg-gray-800"
+                  className="w-full text-left px-4 py-2 hover:bg-gray-800"
                 >
                   🏆 Certificates
                 </button>
@@ -144,7 +144,7 @@ export default function DashboardNav() {
 
                 <button
                   onClick={logout}
-                  className="w-full text-left px-5 py-3 text-red-400 hover:bg-gray-800"
+                  className="w-full text-left px-4 py-2 text-red-400 hover:bg-gray-800"
                 >
                   🚪 Logout
                 </button>
