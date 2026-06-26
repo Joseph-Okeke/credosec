@@ -2,8 +2,10 @@
 
 import { useEffect, useState } from "react";
 import { supabase } from "@/app/lib/supabase";
+import { useRouter } from "next/navigation";
 
 export default function AdminDashboard() {
+  const router = useRouter();
   const [courses, setCourses] = useState<any[]>([]);
   const [students, setStudents] = useState<any[]>([]);
   const [payments, setPayments] = useState<any[]>([]);
@@ -13,9 +15,10 @@ export default function AdminDashboard() {
   const [price, setPrice] = useState("");
 
   useEffect(() => {
-    loadData();
+    void initializeAdmin();
   }, []);
 
+  /*
   async function loadData() {
     const { data: coursesData } = await supabase.from("courses").select("*");
 
@@ -26,6 +29,54 @@ export default function AdminDashboard() {
     setCourses(coursesData || []);
     setStudents(studentsData || []);
     setPayments(paymentsData || []);
+  }
+*/
+
+  async function initializeAdmin() {
+    const {
+      data: { session },
+    } = await supabase.auth.getSession();
+
+    if (!session) {
+      router.replace("/login");
+      return;
+    }
+
+    const { data: profile } = await supabase
+      .from("profiles")
+      .select("role")
+      .eq("user_id", session.user.id)
+      .single();
+
+    if (!profile || profile.role !== "admin") {
+      router.replace("/dashboard");
+      return;
+    }
+
+    await loadData();
+  }
+
+  async function loadData() {
+    const { data: coursesData, error: coursesError } = await supabase
+      .from("courses")
+      .select("*");
+
+    const { data: studentsData, error: studentsError } = await supabase
+      .from("profiles")
+      .select("*");
+
+    const { data: paymentsData, error: paymentsError } = await supabase
+      .from("payments")
+      .select("*");
+
+    if (coursesError || studentsError || paymentsError) {
+      console.error(coursesError || studentsError || paymentsError);
+      return;
+    }
+
+    setCourses(coursesData ?? []);
+    setStudents(studentsData ?? []);
+    setPayments(paymentsData ?? []);
   }
 
   async function addCourse() {
@@ -49,7 +100,7 @@ export default function AdminDashboard() {
     setDescription("");
     setPrice("");
 
-    loadData();
+    await loadData();
   }
 
   return (

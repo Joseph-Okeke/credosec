@@ -10,11 +10,87 @@ export default function DashboardPage() {
   const [enrolled, setEnrolled] = useState<any[]>([]);
   const router = useRouter();
 
+  /* 
+  useEffect(() => {
+    checkAuth();
+  }, []);
+
+  async function checkAuth() {
+    const {
+      data: { session },
+    } = await supabase.auth.getSession();
+
+    if (!session) {
+      router.replace("/login");
+    }
+  }
+
   useEffect(() => {
     loadData();
   }, []);
+*/
+  useEffect(() => {
+    initializeDashboard();
+  }, []);
 
+  async function initializeDashboard() {
+    const {
+      data: { session },
+    } = await supabase.auth.getSession();
+
+    if (!session) {
+      router.replace("/login");
+      return;
+    }
+
+    await loadData(session.user.id);
+  }
+
+  async function loadData(userId: string) {
+    const { data: allCourses, error: coursesError } = await supabase
+      .from("courses")
+      .select("*");
+
+    if (coursesError) {
+      console.error(coursesError);
+    }
+
+    const { data: myCourses, error: enrollmentError } = await supabase
+      .from("enrollments")
+      .select(
+        `
+      course_id,
+      progress,
+      courses (
+        id,
+        title,
+        description
+      )
+    `,
+      )
+      .eq("student_id", userId);
+
+    if (enrollmentError) {
+      console.error(enrollmentError);
+    }
+
+    setCourses(allCourses ?? []);
+    setEnrolled(myCourses ?? []);
+  }
+
+  /*
   async function loadData() {
+    const {
+      data: { session },
+    } = await supabase.auth.getSession();
+
+    if (!session) {
+      router.push("/login");
+      return;
+    }
+
+    const user = session.user;
+    /*
     const {
       data: { user },
     } = await supabase.auth.getUser();
@@ -43,16 +119,27 @@ export default function DashboardPage() {
     setCourses(allCourses || []);
     setEnrolled(myCourses || []);
   }
+*/
 
   function openCourse(courseId: string) {
     router.push(`/dashboard/learn/${courseId}`);
   }
 
   function buyCourse(course: any) {
+    try {
+      localStorage.setItem("selectedCourse", JSON.stringify(course));
+      router.push("/dashboard/payments");
+    } catch (error) {
+      console.error(error);
+      alert("Unable to continue to payment.");
+    }
+  }
+  /*
+  function buyCourse(course: any) {
     localStorage.setItem("selectedCourse", JSON.stringify(course));
     router.push("/dashboard/payments");
   }
-
+*/
   return (
     <section className="min-h-screen bg-black text-white pt-16 md:pt-24">
       <DashboardNav />
