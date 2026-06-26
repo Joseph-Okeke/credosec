@@ -143,8 +143,6 @@ export default function DashboardPage() {
   return (
     <section className="min-h-screen bg-black text-white pt-16 md:pt-24">
       <div className="p-4 md:p-4">
-        <h1 className="text-3xl font-bold">Welcome Back 👋</h1>
-
         {/* ENROLLED COURSES */}
         <h2 className="text-xl font-bold mt-8">Continue Learning</h2>
 
