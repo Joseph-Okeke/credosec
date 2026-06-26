@@ -2,80 +2,138 @@
 
 import { useState } from "react";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 
 export default function Navbar() {
+  const pathname = usePathname();
   const [open, setOpen] = useState(false);
 
+  const links = [
+    { href: "/", label: "Home" },
+    { href: "/services", label: "Services" },
+    { href: "/solutions", label: "Solutions" },
+    { href: "/training", label: "Training" },
+    { href: "/about", label: "About" },
+    { href: "/contact", label: "Contact" },
+  ];
+
   return (
-    <nav className="w-full flex items-center justify-between px-6 md:px-20 py-5 border-b border-[#1b2840] relative">
-      {/* LOGO */}
-      <div className="text-green-400 font-bold text-xl">CredoSec</div>
+    <>
+      <nav className="fixed top-0 left-0 right-0 z-50 bg-[#05070D]/95 backdrop-blur-md border-b border-gray-800">
+        <div className="max-w-7xl mx-auto px-6 lg:px-10 h-20 flex items-center justify-between">
+          {/* LOGO */}
 
-      {/* DESKTOP LINKS */}
-      <div className="hidden md:flex gap-8 text-gray-300">
-        <Link href="/" className="hover:text-green-400 transition">
-          Home
-        </Link>
-        <Link href="/services" className="hover:text-green-400 transition">
-          Services
-        </Link>
-        <Link href="/solutions" className="hover:text-green-400 transition">
-          Solutions
-        </Link>
-        <Link href="/about" className="hover:text-green-400 transition">
-          About
-        </Link>
-        <Link href="/contact" className="hover:text-green-400 transition">
-          Contact
-        </Link>
-        <Link href="/training" className="hover:text-green-400 transition">
-          Training
-        </Link>
-        <Link href="/login" className="hover:text-green-400 transition">
-          Login
-        </Link>
-        <Link href="/signup" className="hover:text-green-400 transition">
-          Register
-        </Link>
-      </div>
+          <Link href="/" className="flex items-center gap-3">
+            <div className="w-10 h-10 rounded-lg bg-green-500 flex items-center justify-center font-bold text-black">
+              C
+            </div>
 
-      {/* CTA (DESKTOP) */}
-      <button className="hidden md:block bg-green-400 text-black px-4 py-2 rounded-md hover:opacity-80 transition">
-        Get Audit
-      </button>
+            <div>
+              <h1 className="text-white font-bold text-xl">CredoSec</h1>
 
-      {/* MOBILE MENU BUTTON */}
-      <button
-        className="md:hidden text-green-400 text-2xl"
-        onClick={() => setOpen(!open)}
-      >
-        {open ? "✖" : "☰"}
-      </button>
-
-      {/* MOBILE MENU */}
-      {open && (
-        <div className="absolute top-full left-0 w-full bg-[#05070d] border-b border-[#1b2840] flex flex-col items-center gap-6 py-6 md:hidden z-50">
-          <Link href="/" onClick={() => setOpen(false)}>
-            Home
-          </Link>
-          <Link href="/services" onClick={() => setOpen(false)}>
-            Services
-          </Link>
-          <Link href="/solutions" onClick={() => setOpen(false)}>
-            Solutions
-          </Link>
-          <Link href="/about" onClick={() => setOpen(false)}>
-            About
-          </Link>
-          <Link href="/contact" onClick={() => setOpen(false)}>
-            Contact
+              <p className="text-xs text-green-400">Cybersecurity Academy</p>
+            </div>
           </Link>
 
-          <button className="bg-green-400 text-black px-5 py-2 rounded-md">
-            Get Audit
+          {/* Desktop */}
+
+          <div className="hidden lg:flex items-center gap-8">
+            {links.map((link) => (
+              <Link
+                key={link.href}
+                href={link.href}
+                className={`transition ${
+                  pathname === link.href
+                    ? "text-green-400"
+                    : "text-gray-300 hover:text-green-400"
+                }`}
+              >
+                {link.label}
+              </Link>
+            ))}
+          </div>
+
+          {/* Desktop Buttons */}
+
+          <div className="hidden lg:flex items-center gap-3">
+            <Link
+              href="/login"
+              className="px-5 py-2 rounded-lg border border-gray-700 hover:border-green-500 hover:text-green-400 transition"
+            >
+              Login
+            </Link>
+
+            <Link
+              href="/signup"
+              className="px-5 py-2 rounded-lg bg-green-500 text-black font-semibold hover:bg-green-400 transition"
+            >
+              Register
+            </Link>
+          </div>
+
+          {/* Mobile */}
+
+          <button
+            onClick={() => setOpen(!open)}
+            className="lg:hidden text-3xl text-green-400"
+          >
+            {open ? "✕" : "☰"}
           </button>
         </div>
-      )}
-    </nav>
+
+        {/* Mobile Menu */}
+
+        <div
+          className={`lg:hidden overflow-hidden transition-all duration-300 ${
+            open ? "max-h-[700px]" : "max-h-0"
+          }`}
+        >
+          <div className="border-t border-gray-800 bg-[#05070D]">
+            <div className="flex flex-col p-6 gap-1">
+              {links.map((link) => (
+                <Link
+                  key={link.href}
+                  href={link.href}
+                  onClick={() => setOpen(false)}
+                  className={`px-4 py-3 rounded-lg transition ${
+                    pathname === link.href
+                      ? "bg-green-500 text-black font-semibold"
+                      : "text-gray-300 hover:bg-gray-900 hover:text-green-400"
+                  }`}
+                >
+                  {link.label}
+                </Link>
+              ))}
+
+              <div className="border-t border-gray-800 my-3" />
+
+              <Link
+                href="/login"
+                onClick={() => setOpen(false)}
+                className="px-4 py-3 rounded-lg text-gray-300 hover:bg-gray-900 hover:text-green-400 transition"
+              >
+                Login
+              </Link>
+
+              <Link
+                href="/signup"
+                onClick={() => setOpen(false)}
+                className="mt-2 text-center bg-green-500 text-black py-3 rounded-lg font-bold hover:bg-green-400 transition"
+              >
+                Register
+              </Link>
+
+              <button className="mt-4 w-full bg-white text-black py-3 rounded-lg font-bold hover:bg-gray-200 transition">
+                Get Audit
+              </button>
+            </div>
+          </div>
+        </div>
+      </nav>
+
+      {/* Spacer for fixed navbar */}
+
+      <div className="h-20" />
+    </>
   );
 }
