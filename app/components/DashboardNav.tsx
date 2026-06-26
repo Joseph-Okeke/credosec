@@ -62,10 +62,10 @@ export default function DashboardNav() {
       <div className="h-full px-5 lg:px-8 flex items-center justify-between">
         {/* LEFT */}
         <div>
-          <h1 className="text-xl md:text-2xl font-bold text-white">
+          <p className="text-xl md:text-2xl font-bold text-white">
             Welcome back,
             <span className="text-green-400 ml-2">{userName}</span>
-          </h1>
+          </p>
 
           <p className="text-sm text-gray-400 mt-1">
             Continue your cybersecurity journey.
