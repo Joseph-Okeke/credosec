@@ -63,9 +63,12 @@ export default function DashboardNav() {
         {/* LEFT */}
 
         <div>
-          <h1 className="text-2xl font-bold">
+          <h1 className="text-3xl md:text-4xl font-bold leading-tight">
             Welcome back,
-            <span className="text-green-400"> {userName}</span>
+            <span className="text-green-400 text-3xl md:text-4xl">
+              {" "}
+              {userName}
+            </span>
           </h1>
 
           <p className="text-sm text-gray-400 mt-1">
