@@ -3,7 +3,6 @@
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import { supabase } from "@/app/lib/supabase";
-import DashboardNav from "@/app/components/DashboardNav";
 
 export default function CoursesPage() {
   const router = useRouter();
@@ -33,8 +32,6 @@ export default function CoursesPage() {
 
   return (
     <section className="min-h-screen bg-black text-white">
-      <DashboardNav />
-
       <div className="p-6 md:p-10">
         <h1 className="text-3xl font-bold">Available Courses</h1>
 
@@ -64,7 +61,9 @@ export default function CoursesPage() {
                 </p>
 
                 <button
-                  onClick={() => router.push(`/dashboard/course/${course.id}`)}
+                  onClick={() =>
+                    router.push(`/dashboard/marketplace/${course.id}`)
+                  }
                   className="mt-5 w-full bg-green-500 text-black py-3 rounded-lg font-semibold"
                 >
                   View Course

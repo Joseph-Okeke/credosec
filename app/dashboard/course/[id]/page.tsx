@@ -3,7 +3,6 @@
 import { useEffect, useState } from "react";
 import { useParams, useRouter } from "next/navigation";
 import { supabase } from "@/app/lib/supabase";
-import DashboardNav from "@/app/components/DashboardNav";
 
 export default function CourseDetailsPage() {
   const { id } = useParams();
@@ -60,8 +59,6 @@ export default function CourseDetailsPage() {
   if (loading) {
     return (
       <section className="min-h-screen bg-black text-white">
-        <DashboardNav />
-
         <div className="p-10">
           <h2 className="text-xl">Loading course...</h2>
         </div>
@@ -72,8 +69,6 @@ export default function CourseDetailsPage() {
   if (!course) {
     return (
       <section className="min-h-screen bg-black text-white">
-        <DashboardNav />
-
         <div className="p-10">
           <h2 className="text-2xl font-bold">Course not found</h2>
         </div>
@@ -91,8 +86,6 @@ export default function CourseDetailsPage() {
 
   return (
     <section className="min-h-screen bg-black text-white">
-      <DashboardNav />
-
       <div className="max-w-6xl mx-auto p-6 md:p-10">
         <img
           src={course.thumbnail || "/images/course-placeholder.jpg"}

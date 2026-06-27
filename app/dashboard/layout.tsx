@@ -21,7 +21,7 @@ export default function DashboardLayout({
     },
     {
       name: "Marketplace",
-      href: "/dashboard/course",
+      href: "/dashboard/marketplace",
       icon: "🛒",
     },
     {

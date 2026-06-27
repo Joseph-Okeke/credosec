@@ -3,7 +3,6 @@
 import { useEffect, useState } from "react";
 import { useParams } from "next/navigation";
 import { supabase } from "@/app/lib/supabase";
-import DashboardNav from "@/app/components/DashboardNav";
 
 export default function LearnPage() {
   const { id } = useParams();
@@ -102,8 +101,6 @@ export default function LearnPage() {
 
   return (
     <section className="min-h-screen bg-black text-white">
-      <DashboardNav />
-
       <div className="p-6 md:p-10 grid md:grid-cols-3 gap-6">
         {/* LEFT */}
         <div className="md:col-span-2 bg-gray-900 p-6 rounded-xl">

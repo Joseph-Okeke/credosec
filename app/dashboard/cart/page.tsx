@@ -2,7 +2,6 @@
 
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
-import DashboardNav from "@/app/components/DashboardNav";
 
 export default function CartPage() {
   const router = useRouter();
@@ -49,8 +48,6 @@ export default function CartPage() {
 
   return (
     <section className="min-h-screen bg-black text-white">
-      <DashboardNav />
-
       <div className="max-w-6xl mx-auto p-6 md:p-10">
         <h1 className="text-3xl font-bold">Shopping Cart</h1>
 
@@ -61,7 +58,7 @@ export default function CartPage() {
             <h2 className="text-xl font-bold">Your cart is empty</h2>
 
             <button
-              onClick={() => router.push("/dashboard/courses")}
+              onClick={() => router.push("/dashboard/marketplace")}
               className="mt-6 bg-green-500 text-black px-6 py-3 rounded-lg font-semibold"
             >
               Browse Courses

@@ -3,7 +3,6 @@
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import { supabase } from "@/app/lib/supabase";
-import DashboardNav from "@/app/components/DashboardNav";
 
 export default function PaymentsPage() {
   const router = useRouter();
@@ -84,8 +83,6 @@ export default function PaymentsPage() {
   if (loading) {
     return (
       <section className="min-h-screen bg-black text-white">
-        <DashboardNav />
-
         <div className="p-10">Loading payment...</div>
       </section>
     );
@@ -93,8 +90,6 @@ export default function PaymentsPage() {
 
   return (
     <section className="min-h-screen bg-black text-white">
-      <DashboardNav />
-
       <div className="max-w-5xl mx-auto p-6 md:p-10">
         <h1 className="text-4xl font-bold">Checkout</h1>
 
